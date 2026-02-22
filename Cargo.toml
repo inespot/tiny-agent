@@ -1,0 +1,15 @@
+[package]
+name = "tiny-agent"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+# HTTP client for calling the LLM API. The "json" feature enables .json() serialization/deserialization.
+reqwest = { version = "0.12", features = ["json"] }
+# JSON serialization/deserialization — used to build the request body and parse the response.
+serde_json = "1"
+# Async runtime — reqwest is async, so we need a runtime to drive futures.
+# "rt-multi-thread" gives us a full runtime, "macros" enables the #[tokio::main] shorthand.
+tokio = { version = "1", features = ["rt-multi-thread", "macros"] }
+# Loads environment variables from a .env file at startup.
+dotenvy = "0.15"
